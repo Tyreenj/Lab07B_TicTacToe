@@ -20,7 +20,6 @@ public class TicTacToeButton extends JButton {
         this.row = row;
         this.col = col;
 
-        // Set default styling
         setFont(new Font(Font.SANS_SERIF, Font.BOLD, 48));
         setFocusPainted(false);
     }

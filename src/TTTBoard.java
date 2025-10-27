@@ -71,7 +71,6 @@ public class TTTBoard {
      * @return true if player has won, false otherwise
      */
     public boolean isWinner(String player) {
-        // Check rows
         for (int row = 0; row < ROWS; row++) {
             if (board[row][0].equals(player) &&
                     board[row][1].equals(player) &&
@@ -80,7 +79,6 @@ public class TTTBoard {
             }
         }
 
-        // Check columns
         for (int col = 0; col < COLS; col++) {
             if (board[0][col].equals(player) &&
                     board[1][col].equals(player) &&
@@ -89,14 +87,12 @@ public class TTTBoard {
             }
         }
 
-        // Check diagonal (top-left to bottom-right)
         if (board[0][0].equals(player) &&
                 board[1][1].equals(player) &&
                 board[2][2].equals(player)) {
             return true;
         }
 
-        // Check diagonal (top-right to bottom-left)
         if (board[0][2].equals(player) &&
                 board[1][1].equals(player) &&
                 board[2][0].equals(player)) {
@@ -112,16 +108,13 @@ public class TTTBoard {
      * @return true if tie, false otherwise
      */
     public boolean isTie() {
-        // Check if board is full (all spaces occupied)
         for (int r = 0; r < ROWS; r++) {
             for (int c = 0; c < COLS; c++) {
                 if (board[r][c].equals(" ")) {
-                    // Board not full, check if there's still a winning possibility
                     return isNoWinPossible();
                 }
             }
         }
-        // Board is full and no winner (since we check win before tie)
         return true;
     }
 
@@ -133,7 +126,6 @@ public class TTTBoard {
     private boolean isNoWinPossible() {
         boolean xFlag, oFlag;
 
-        // Check rows
         for (int r = 0; r < ROWS; r++) {
             xFlag = oFlag = false;
             for (int c = 0; c < COLS; c++) {
@@ -143,7 +135,6 @@ public class TTTBoard {
             if (!(xFlag && oFlag)) return false;
         }
 
-        // Check columns
         for (int c = 0; c < COLS; c++) {
             xFlag = oFlag = false;
             for (int r = 0; r < ROWS; r++) {
@@ -153,7 +144,6 @@ public class TTTBoard {
             if (!(xFlag && oFlag)) return false;
         }
 
-        // Check diagonal (top-left to bottom-right)
         xFlag = oFlag = false;
         for (int i = 0; i < ROWS; i++) {
             if (board[i][i].equals("X")) xFlag = true;
@@ -161,7 +151,6 @@ public class TTTBoard {
         }
         if (!(xFlag && oFlag)) return false;
 
-        // Check diagonal (top-right to bottom-left)
         xFlag = oFlag = false;
         for (int i = 0; i < ROWS; i++) {
             if (board[i][ROWS - 1 - i].equals("X")) xFlag = true;

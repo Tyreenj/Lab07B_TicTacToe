@@ -37,9 +37,8 @@ public class TicTacToeFrame extends JFrame {
     private void initComponents() {
         setLayout(new BorderLayout());
 
-        // --- Create the 3x3 board (no spacing, no border) ---
         JPanel boardPanel = new JPanel(new GridLayout(3, 3, 0, 0));
-        boardPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); // no border
+        boardPanel.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
         for (int row = 0; row < 3; row++) {
             for (int col = 0; col < 3; col++) {
@@ -55,17 +54,14 @@ public class TicTacToeFrame extends JFrame {
 
         add(boardPanel, BorderLayout.CENTER);
 
-        // --- Create bottom control panel ---
         JPanel controlPanel = new JPanel(new BorderLayout());
 
-        // Center panel for status label
         JPanel centerPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 10));
         statusLabel = new JLabel("Player X's turn");
         statusLabel.setFont(new Font(Font.SANS_SERIF, Font.BOLD, 18));
         centerPanel.add(statusLabel);
         controlPanel.add(centerPanel, BorderLayout.CENTER);
 
-        // Right panel for buttons
         JPanel rightPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 10));
         resetButton = new JButton("Reset");
         resetButton.setFont(new Font(Font.SANS_SERIF, Font.PLAIN, 16));
@@ -102,11 +98,9 @@ public class TicTacToeFrame extends JFrame {
      * @param col The column of clicked button
      */
     private void handleButtonClick(int row, int col) {
-        // Get the current player BEFORE making the move
         String playerMakingMove = game.getCurrentPlayer();
 
         if (game.makeMove(row, col)) {
-            // Display the player who JUST moved
             buttons[row][col].setText(playerMakingMove);
             updateDisplay();
         }
@@ -130,7 +124,6 @@ public class TicTacToeFrame extends JFrame {
 
             disableAllButtons();
 
-            // Show popup with result
             JOptionPane.showMessageDialog(
                     this,
                     message,
@@ -138,7 +131,6 @@ public class TicTacToeFrame extends JFrame {
                     JOptionPane.INFORMATION_MESSAGE
             );
 
-            // Ask if they want to play again
             int choice = JOptionPane.showConfirmDialog(
                     this,
                     "Would you like to play again?",

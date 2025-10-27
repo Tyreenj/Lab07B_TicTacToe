@@ -37,13 +37,10 @@ public class TicTacToe {
             return false;
         }
 
-        // Place the current player's mark
         board.setValue(row, col, currentPlayer);
 
-        // Check if game is over BEFORE switching players
         checkGameOver();
 
-        // Only switch players if game is not over
         if (!gameOver) {
             switchPlayer();
         }
@@ -117,7 +114,6 @@ public class TicTacToe {
      * Checks for tie starting at move 7.
      */
     private void checkGameOver() {
-        // Check for winner (starting at move 5)
         if (board.getMoveCount() >= 5) {
             if (board.isWinner("X") || board.isWinner("O")) {
                 gameOver = true;
@@ -125,7 +121,6 @@ public class TicTacToe {
             }
         }
 
-        // Check for tie (starting at move 7)
         if (board.getMoveCount() >= 7) {
             if (board.isTie()) {
                 gameOver = true;
